@@ -11,6 +11,9 @@ body {
     flex-direction: column;
     align-items: center;
 }
+img{
+    width: 100%;
+}
 form {
     margin-top: 12px;
     display: flex;
@@ -30,7 +33,6 @@ form {
 input {
     border: none;
     outline: none;
-    color: #B5CDD0;
 }
 .fa-magnifying-glass {
     color: #B5CDD0;
@@ -54,6 +56,10 @@ button {
     flex-direction: column;
     justify-content: space-between;
 }
+.movie-img {
+    max-width: 300px;
+    max-height: 450px;
+}
 .title-wrapper {
     display: flex;
     justify-content: space-between;
@@ -75,7 +81,12 @@ button {
     }
     #movie-container {
         grid-template-areas: "a a";
-
+    }
+    #search-box-container {
+        padding: 14px 24px;
+    }
+    input {
+        font-size: 18px;
     }
 
 }

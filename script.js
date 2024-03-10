@@ -17,7 +17,7 @@ const fetchMovies = (title) => {
                                 <img src="${movie.Poster}" alt="${movie.Title}" />
                             </div>
                             <span class="title-wrapper">
-                                <h3 class="movie-title">${movie.Title}</h3>
+                                <h3 class="movie-title">${movie.Title.length > 20 ? movie.Title.slice(0, 15) + '...' : movie.Title}</h3>
                                 <p class='movie-year'>Year: ${movie.Year}</p>
                             </span>
                             <button>See Details</button>
