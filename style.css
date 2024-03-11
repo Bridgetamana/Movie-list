@@ -56,10 +56,6 @@ button {
     flex-direction: column;
     justify-content: space-between;
 }
-.movie-img {
-    max-width: 300px;
-    max-height: 450px;
-}
 .title-wrapper {
     display: flex;
     justify-content: space-between;
@@ -74,6 +70,50 @@ button {
     font-size: 14px;
     font-weight: 500;
 }
+
+/* MODAL STYLING */
+.modal-img {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 16px;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%; 
+    max-width: 515px;
+    max-height: 100%;
+    padding: 8px;
+    z-index: 50;
+    overflow: auto;
+    margin: 0 auto;
+}
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    color: #111155;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+}
+.modal-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* RESPONSIVENESS */
 
 @media only screen and (min-width: 768px) {
     body {
