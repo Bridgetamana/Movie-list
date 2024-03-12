@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font awesome icons -->
-    <script src="https://kit.fontawesome.com/e1c45fbebb.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <script
+      src="https://kit.fontawesome.com/e1c45fbebb.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <!-- Header section -->
     <div>
-        <img src="./img/Movie-logo.png" alt="">
+      <img src="./img/Movie-logo.png" alt="" />
     </div>
     <form>
-        <div id="search-box-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name="" id="search-box" placeholder="Search for movies......">
-        </div>
-        <button type="submit" id="submit-btn">Search</button>
+      <div id="search-box-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          name="search-box"
+          id="search-box"
+          placeholder="Search for movies......"
+        />
+      </div>
+      <button type="submit" id="submit-btn">Search</button>
     </form>
 
     <!-- Main content -->
     <main>
-        <div id="movie-container">
-
-        </div>
-        <div id="modal">
-            
-        </div>
+      <div id="movie-container">
+        <span id="error-msg">
+          <p>There was an error loading the movies</p>
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </span>
+      </div>
+      <div id="modal-overlay">
+        <div id="modal"></div>
+      </div>
     </main>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

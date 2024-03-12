@@ -3,7 +3,9 @@ const key = '1ec7b992';
 const searchBox = document.getElementById('search-box');
 const form = document.querySelector('form');
 const modal = document.getElementById('modal');
-
+const errorMsg = document.getElementById('error-msg');
+const closeBtn = document.querySelector('.fa-xmark');
+const modalOverlay = document.getElementById('modal-overlay');
 
 // Function to fetch more details of a movie 
 const fetchMovieDetails = (imdbID) => {
@@ -23,16 +25,20 @@ const fetchMovieDetails = (imdbID) => {
                     </div>
                     
                     <span class="modal-body">
-                        <h3>${data.Title}</h3>
-                        <h4>Details</h4>
-                        <p>Genre: ${data.Genre}</p>
+                        <h2>${data.Title}</h2>
                         <p>Plot: ${data.Plot}</p>
+                        <p>Genre: ${data.Genre}</p>
+                        <p>Released: ${data.Released}</p>
+                        <p>Runtime: ${data.Runtime}</p>
+                        <p>Actors: ${data.Actors}</p>
+                        <p>Rated: ${data.Rated}</p>
                         <p>IMDb Rating: ${data.imdbRating}</p>
                         <p>Director: ${data.Director}</p>
                     </span>
                 </div>
             `;
             modal.style.display = 'block';
+            modalOverlay.style.display = 'block';
         })
         .catch((err) => {
             console.error('Error fetching movie details:', err);
@@ -72,12 +78,15 @@ const fetchMovies = (title) => {
             if (data.Response === "True") {
                 renderMovieCards(data.Search);
             } else {
-                movieContainer.innerHTML = '<p class="error-msg">No movies found with that title</p>';
+                errorMsg.innerHTML = '<p class="error-msg">No movies found with that title</p>';
             }
         })
-        .catch((err) => {
-            movieContainer.innerHTML = '<p class="error-msg">There was an error loading the movies</p>';
-        });
+        // .catch((err) => {
+        //     movieContainer.innerHTML = '<p class="error-msg">There was an error loading the movies</p>';
+        // });
+            .catch((err) => {
+                errorMsg.style.display = 'block'
+            })
 };
 
 // Event listener for form submission
@@ -91,6 +100,6 @@ form.addEventListener('submit', (e) => {
 
 // Function to close modal
 function closeModal() {
-    const modal = document.getElementById('modal');
     modal.style.display = 'none';
 }
+

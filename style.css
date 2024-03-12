@@ -1,132 +1,144 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 body {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    background-color: #D3F0F4;
-    padding: 32px 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  background-color: #d3f0f4;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-img{
-    width: 100%;
+img {
+  width: 100%;
 }
 form {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    margin-bottom: 24px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 24px;
 }
 #search-box-container {
-    background-color: white;
-    padding: 10px 12px;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    margin-right: 10px;
-
+  background-color: white;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 input {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 .fa-magnifying-glass {
-    color: #B5CDD0;
-    margin-right: 5px;
+  color: #b5cdd0;
+  margin-right: 5px;
 }
 button {
-    background-color: #111155;
-    padding: 10px 12px;
-    border-radius: 5px;
-    color: white;
-    border: none;
+  background-color: #111155;
+  padding: 10px 12px;
+  border-radius: 5px;
+  color: white;
+  border: none;
 }
 #movie-container {
-    display: grid;
-    gap: 30px;
+  display: grid;
+  gap: 30px;
 }
 .movie-card {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .title-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
 }
-.error-msg {
-    color: red;
+#error-msg {
+  color: red;
+  display: none;
 }
 .movie-year {
-    color: #111155;
-    font-size: 14px;
-    font-weight: 500;
+  color: #111155;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* MODAL STYLING */
 .modal-img {
-    width: 50%;
-    margin: 0 auto;
-    padding-top: 16px;
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 16px;
 }
-
 #modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%; 
-    max-width: 515px;
-    max-height: 100%;
-    padding: 8px;
-    z-index: 50;
-    overflow: auto;
-    margin: 0 auto;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 515px;
+  max-height: 100%;
+  padding: 8px;
+  z-index: 50;
+  overflow: auto;
+  margin: 0 auto;
 }
 .modal-content {
-    background-color: #fefefe;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-    color: #111155;
+  background-color: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  color: #111155;
 }
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #cfcdcd;
 }
 .modal-body {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+.modal-body p {
+  line-height: 1.5;
+  border-bottom: 1px solid #cfcdcd;
+  padding-bottom: 6px;
+}
+#modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
 
+}
 /* RESPONSIVENESS */
 
 @media only screen and (min-width: 768px) {
-    body {
-        padding: 48px 16px;
-    }
-    #movie-container {
-        grid-template-areas: "a a";
-    }
-    #search-box-container {
-        padding: 14px 24px;
-    }
-    input {
-        font-size: 18px;
-    }
-
+  body {
+    padding: 48px 16px;
+  }
+  #movie-container {
+    grid-template-areas: "a a";
+  }
+  #search-box-container {
+    padding: 14px 24px;
+  }
+  input {
+    font-size: 18px;
+  }
 }
