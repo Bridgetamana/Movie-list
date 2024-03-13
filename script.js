@@ -9,7 +9,7 @@ const modalOverlay = document.getElementById('modal-overlay');
 
 // Function to fetch more details of a movie 
 const fetchMovieDetails = (imdbID) => {
-    fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${key}`)
+    fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${key}`)
         .then((res) => res.json())
         .then((data) => {
             modal.innerHTML = `
