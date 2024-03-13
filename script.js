@@ -72,7 +72,7 @@ const renderMovieCards = (movies) => {
 
 // Function to fetch movies based on the search query
 const fetchMovies = (title) => {
-    fetch(`http://www.omdbapi.com/?s=${title}&apikey=${key}`)
+    fetch(`https://www.omdbapi.com/?s=${title}&apikey=${key}`)
         .then((res) => res.json())
         .then((data) => {
             if (data.Response === "True") {
