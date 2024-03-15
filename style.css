@@ -43,6 +43,7 @@ button {
   border-radius: 5px;
   color: white;
   border: none;
+  cursor: pointer;
 }
 #movie-container {
   display: grid;
@@ -64,6 +65,9 @@ button {
 #error-msg {
   color: red;
   display: none;
+}
+.fa-circle-exclamation {
+  margin-left: 6px;
 }
 .movie-year {
   color: #111155;

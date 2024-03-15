@@ -101,5 +101,6 @@ form.addEventListener('submit', (e) => {
 // Function to close modal
 function closeModal() {
     modal.style.display = 'none';
+    modalOverlay.style.display = 'none';
 }
 
