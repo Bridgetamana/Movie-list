@@ -19,30 +19,38 @@
     ></script>
   </head>
   <body>
-    <!-- Header section -->
-    <div>
-      <img src="./img/Movie-logo.png" alt="" />
-    </div>
-    <form>
-      <div id="search-box-container">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input
-          type="text"
-          name="search-box"
-          id="search-box"
-          placeholder="Search for movies......"
-        />
+    <header>
+      <!-- Header section -->
+      <div class="header-text">
+        <h2>What movie would you like to search today?</h2>
       </div>
-      <button type="submit" id="submit-btn">Search</button>
-    </form>
+      <form>
+        <div id="search-box-container">
+          <div class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <input
+            type="search"
+            name="search"
+            id="search-box"
+            placeholder="search movies..."
+          />
+          <button type="submit" id="submit-btn">Search</button>
+        </div>
+      </form>
+    </header>
 
     <!-- Main content -->
     <main>
+      <div class="search-header">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h4>Search results</h4>
+      </div>
+      <span id="error-msg">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <p>There was an error loading the movies</p>
+      </span>
       <div id="movie-container">
-        <span id="error-msg">
-          <p>There was an error loading the movies<i class="fa-solid fa-circle-exclamation"></i></p>
-          
-        </span>
       </div>
       <div id="modal-overlay">
         <div id="modal"></div>
