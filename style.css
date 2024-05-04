@@ -15,6 +15,7 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +23,11 @@ header {
   padding-top: 3rem;
   z-index: 1000;
 }
-/* .header-text {
-  margin-top: 5rem;
-  margin-bottom: 2rem;
-  padding: 0 2rem;
-} */
+.header-text {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
 form {
   margin-top: 12px;
   display: flex;
@@ -93,7 +94,7 @@ main {
 }
 .img-wrapper img {
   border-radius: 8px;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 .search-header {
   display: flex;
@@ -102,7 +103,7 @@ main {
   text-transform: uppercase;
   margin-bottom: 1rem;
   font-size: 14px;
-  color: #62636C;
+  color: #62636c;
   padding-left: 26px;
   display: none;
 }
@@ -116,7 +117,7 @@ main {
   margin-left: 6px;
 }
 .movie-year {
-  color: #62636C;
+  color: #62636c;
   font-size: 10px;
   font-weight: 500;
 }
@@ -194,13 +195,11 @@ main {
     font-size: 14px;
   }
   #movie-container {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-}
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 @media only screen and (min-width: 1024px) {
   #movie-container {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-}
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
