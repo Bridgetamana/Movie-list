@@ -31,12 +31,12 @@ window.addEventListener("scroll", function () {
 const apiKey = '1ec7b992';
 const baseUrl = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&t=`;
 let currentPage = 1;
-const moviesPerPage = 10;
+const moviesPerPage = 12;
 const moviesListElement = document.querySelector('.movies-list');
 const pageInfoElement = document.querySelector('.page-info');
 const prevButton = document.querySelector('.prev-btn');
 const nextButton = document.querySelector('.next-btn');
-const loaderElement = document.querySelector('.loader'); // Loader element
+const loaderElement = document.querySelector('.loader'); 
 
 let watchlist = [];
 

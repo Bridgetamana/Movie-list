@@ -159,7 +159,7 @@ header > .container {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(./img/greatest-showman.jpg);
+  background-image: url(../img/greatest-showman.jpg);
   background-position: center;
   background-size: cover;
   opacity: 0.7;
