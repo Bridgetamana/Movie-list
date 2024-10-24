@@ -3,59 +3,189 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie List</title>
+    <title>My Watched Movies</title>
+
+    <!-- Bootstrap and CSS Links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
     />
-    <!-- Font awesome icons -->
     <script
       src="https://kit.fontawesome.com/e1c45fbebb.js"
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
-    <header>
-      <!-- Header section -->
-      <div class="header-text">
-        <h2>What movie would you like to search today?</h2>
-      </div>
-      <form>
-        <div id="search-box-container">
-          <div class="search-icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <!-- Header Section -->
+    <header class="header">
+      <div class="container">
+        <a href="#home" class="logo">
+          <img src="./img/Movie-logo.png" alt="Logo" />
+        </a>
+
+        <button class="menu-open-btn" id="menu-open-btn">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </button>
+
+        <nav class="navbar">
+          <div class="navbar-top">
+            <button class="menu-close-btn" id="menu-close-btn">x</button>
           </div>
-          <input
-            type="search"
-            name="search"
-            id="search-box"
-            placeholder="search movies..."
-          />
-          <button type="submit" id="submit-btn">Search</button>
-        </div>
-      </form>
+          <ul class="navbar-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#movies">My Movies</a></li>
+            <li><a href="#suggestions">Suggestions</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="menu-backdrop"></div>
     </header>
 
-    <!-- Main content -->
-    <main>
-      <div class="search-header">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <h4>Search results</h4>
-      </div>
-      <span id="error-msg">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        <p>There was an error loading the movies</p>
-      </span>
-      <div id="movie-container">
-      </div>
-      <div id="modal-overlay">
-        <div id="modal"></div>
-      </div>
+    <!-- Hero Section -->
+    <main id="home">
+      <section class="hero-area hero-bg">
+        <div class="container">
+          <div class="row">
+            <div>
+              <div class="hero-content">
+                <h6 class="sub-title">My Movie Diary</h6>
+                <h2 class="title">
+                  A <span>Collection</span> of Movies I've Watched
+                </h2>
+                <p>
+                  Welcome to my personal collection of movies I've enjoyed (or
+                  at least the ones I remember). This is just a fun little list
+                  of my favorite films, TV shows, and more!
+                </p>
+              </div>
+
+              <div class="search">
+                <input
+                  type="text"
+                  placeholder="Search for a movie..."
+                  id="movie-search-box"
+                />
+                <button class="searchbutton">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="searchbutton-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                  </svg>                  
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Movies Section -->
+      <section id="movies" class="watched-movie">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="section-title text-center">
+                <span class="sub-title">MY MOVIE COLLECTION</span>
+                <h2 class="title">Movies I've Watched</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="watched-movie-cat-active text-center">
+                <button class="active">All</button>
+                <button>Movies</button>
+                <button>TV Shows</button>
+                <button>Documentary</button>
+              </div>
+            </div>
+          </div>
+          <div class="loader" style="display: none;">Loading...</div>
+          <div class="row movies-list">
+            <!-- This section will dynamically populate with movie content -->
+          </div>
+
+          <div class="pagination">
+            <button class="prev-btn">Previous</button>
+            <button class="next-btn">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Suggestion Box Section -->
+      <section id="suggestions" class="suggestions-area">
+        <div class="container">
+          <div class="suggestions-inner-wrap">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="suggestions-content">
+                  <h4>Suggest a Movie</h4>
+                  <p>
+                    Got a great movie or show suggestion for me? I'm always
+                    looking to expand my collection. Drop your suggestion below!
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <form action="#" class="suggestions-form">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Your suggestion..."
+                  />
+                  <button class="btn">get started</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <p>
+        This is a list of the movies I've watched. Check out the source code on
+        <a href="" target="_blank">GitHub</a>.
+      </p>
+      <ul class="socials">
+        <li><a href="" target="_blank">Twitter</a></li>
+        <li><a href="" target="_blank">LinkedIn</a></li>
+      </ul>
+    </footer>
+    <a href="#" class="scroll-up"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="scroll-up-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m4.5 15.75 7.5-7.5 7.5 7.5"
+        />
+      </svg>
+    </a>
+
+    <!-- Bootstrap JS and Custom Script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script src="./script.js"></script>
   </body>
 </html>

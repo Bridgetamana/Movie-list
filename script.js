@@ -1,113 +1,119 @@
-const movieContainer = document.getElementById("movie-container");
-const key = "1ec7b992";
-const searchBox = document.getElementById("search-box");
-const form = document.querySelector("form");
-const modal = document.getElementById("modal");
-const errorMsg = document.getElementById("error-msg");
-const closeBtn = document.querySelector(".fa-xmark");
-const modalOverlay = document.getElementById("modal-overlay");
-const searchHeader = document.querySelector(".search-header");
-const Header = document.querySelector("header");
-// Function to fetch more details of a movie
-const fetchMovieDetails = (imdbID) => {
-  fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${key}`)
-    .then((res) => res.json())
-    .then((data) => {
-      modal.innerHTML = `
-                <div class="modal-content">
-                    
-                    <span class="modal-header">
-                        <h2>Movie Details</h2>
-                        <i class="fa-solid fa-xmark" onclick="closeModal()"></i>
-                    </span>
+const navOpenBtn = document.querySelector(".menu-open-btn");
+const navCloseBtn = document.querySelector(".menu-close-btn");
+const navbar = document.querySelector(".navbar");
+const backdrop = document.querySelector(".menu-backdrop");
 
-                    <div class='modal-img'>
-                        <img src="${data.Poster}" alt="${data.Title}">
-                    </div>
-                    
-                    <span class="modal-body">
-                        <h2>${data.Title}</h2>
-                        <p>Plot: ${data.Plot}</p>
-                        <p>Genre: ${data.Genre}</p>
-                        <p>Released: ${data.Released}</p>
-                        <p>Runtime: ${data.Runtime}</p>
-                        <p>Actors: ${data.Actors}</p>
-                        <p>Rated: ${data.Rated}</p>
-                        <p>IMDb Rating: ${data.imdbRating}</p>
-                        <p>Director: ${data.Director}</p>
-                    </span>
-                </div>
-            `;
-      modal.style.display = "block";
-      modalOverlay.style.display = "block";
-      Header.style.display = "none";
+function toggleNav() {
+  navbar.classList.toggle("active");
+  backdrop.classList.toggle("active");
+}
 
-    })
-    .catch((err) => {
-      console.error("Error fetching movie details:", err);
-    });
-};
+navOpenBtn.addEventListener("click", toggleNav);
+navCloseBtn.addEventListener("click", toggleNav);
 
-// Function to handle click on "See Details" button
-const handleSeeDetailsClick = (imdbID) => {
-  fetchMovieDetails(imdbID);
-};
+const header = document.querySelector(".header");
+const scrollbtn = document.querySelector(".scroll-up");
 
-// Function to render movie cards
+window.addEventListener("scroll", function () {
+  if (window.scrollY >= 10) {
+    header.classList.add("active");
+  } else {
+    header.classList.remove("active");
+  }
 
-const renderMovieCards = (movies) => {
-  movieContainer.innerHTML = "";
-  movies.forEach((movie) => {
-    const movieCard = `
-    <div class="movie-card-content" onclick="handleSeeDetailsClick('${movie.imdbID}')">
-
-        <div class="img-wrapper">
-            <img src="${movie.Poster}" alt="${movie.Title}"/>
-        </div>
-        <span class="title-wrapper">
-            <h3>${
-            movie.Title.length > 20
-                ? movie.Title.slice(0, 15) + "..."
-                : movie.Title
-            }</h3>
-            <p class='movie-year'>Year: ${movie.Year}</p>
-        </span>
-    </div>
-        `;
-    movieContainer.innerHTML += movieCard;
-    searchHeader.style.display = "flex";
-  });
-};
-
-// Function to fetch movies based on the search query
-const fetchMovies = (title) => {
-  fetch(`https://www.omdbapi.com/?s=${title}&apikey=${key}`)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.Response === "True") {
-        renderMovieCards(data.Search);
-      } else {
-        errorMsg.innerHTML =
-          '<p class="error-msg">No movies found with that title</p>';
-          errorMsg.style.display = "flex";
-      }
-    })
-    .catch((err) => {
-      errorMsg.style.display = "flex";
-    });
-};
-
-// Event listener for form submission
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const searchTerm = searchBox.value.trim();
-  if (searchTerm !== "") {
-    fetchMovies(searchTerm);
+  if (window.scrollY >= 200) {
+    scrollbtn.classList.add("visible");
+  } else {
+    scrollbtn.classList.remove("visible");
   }
 });
 
-// Function to close modal
-function closeModal() {
-  modal.style.display = "none";
-  modalOverlay.style.display = "none";
+const apiKey = '1ec7b992';
+const baseUrl = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&t=`;
+let currentPage = 1;
+const moviesPerPage = 10;
+const moviesListElement = document.querySelector('.movies-list');
+const pageInfoElement = document.querySelector('.page-info');
+const prevButton = document.querySelector('.prev-btn');
+const nextButton = document.querySelector('.next-btn');
+const loaderElement = document.querySelector('.loader'); // Loader element
+
+let watchlist = [];
+
+async function fetchWatchlist() {
+  try {
+    const response = await fetch('movies.json');
+    const data = await response.json();
+    watchlist = data.watchlist;
+    fetchMoviesFromWatchlist(currentPage);
+  } catch (error) {
+    console.error('Error fetching watchlist:', error);
+  }
 }
+
+async function fetchMoviesFromWatchlist(page) {
+  moviesListElement.innerHTML = '';
+  loaderElement.style.display = 'block';
+
+  const startIndex = (page - 1) * moviesPerPage;
+  const endIndex = startIndex + moviesPerPage;
+  const moviesToDisplay = watchlist.slice(startIndex, endIndex);
+
+  try {
+    const moviesData = await Promise.all(moviesToDisplay.map(movieTitle => fetch(`${baseUrl}${movieTitle}`).then(res => res.json())));
+
+    moviesData.forEach((data, index) => {
+      const movieItem = document.createElement('div');
+      movieItem.classList.add('col-xl-3', 'col-lg-4', 'col-sm-6');
+
+      if (data.Response === 'True') {
+        movieItem.innerHTML = `
+          <div class="movie-item mb-6">
+            <div class="movie-poster">
+              <a href="movie.html?title=${encodeURIComponent(data.Title)}">
+                <img src="${data.Poster !== 'N/A' ? data.Poster : 'placeholder.jpg'}" alt="${data.Title}">
+              </a>
+            </div>
+            <div class="movie-content">
+              <div class="top">
+                <h5 class="title">
+                  <a href="movie.html?title=${encodeURIComponent(data.Title)}">${data.Title}</a>
+                </h5>
+                <span class="date">${data.Year}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        movieItem.innerHTML = `<p>${moviesToDisplay[index]}: ${data.Error}</p>`;
+      }
+
+      moviesListElement.appendChild(movieItem);
+    });
+  } catch (error) {
+    console.error('Fetch error: ', error);
+    moviesListElement.innerHTML = `<p class="text-danger">Error fetching movie details.</p>`;
+  }
+
+  loaderElement.style.display = 'none';
+  updatePageInfo();
+}
+
+function updatePageInfo() {
+  const totalPages = Math.ceil(watchlist.length / moviesPerPage);
+  pageInfoElement.textContent = `Page ${currentPage} of ${totalPages}`;
+
+  prevButton.disabled = currentPage === 1;
+  nextButton.disabled = currentPage === totalPages;
+}
+
+function changePage(increment) {
+  const totalPages = Math.ceil(watchlist.length / moviesPerPage);
+  currentPage = Math.min(Math.max(currentPage + increment, 1), totalPages);
+  fetchMoviesFromWatchlist(currentPage);
+}
+
+prevButton.addEventListener('click', () => changePage(-1));
+nextButton.addEventListener('click', () => changePage(1));
+
+fetchWatchlist();
