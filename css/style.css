@@ -278,7 +278,6 @@ header > .container {
 .movie-poster img {
   width: 100%;
   border-radius: 5px;
-  height: 450px;
 }
 
 .movie-content .top {
@@ -495,6 +494,12 @@ header > .container {
 .menu-backdrop.active {
   opacity: 0.5;
   visibility: visible;
+}
+
+@media (min-width: 575px) {
+  .movie-poster img {
+    height: 450px;
+  }
 }
 
 @media (min-width: 768px) {
