@@ -95,6 +95,7 @@ header > .container {
 
 .navbar {
   position: fixed;
+  display: block;
   top: 0;
   right: -300px;
   background: #171d21;
@@ -159,7 +160,7 @@ header > .container {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url(../img/greatest-showman.jpg);
+  background-image: url('https://image.tmdb.org/t/p/w1280/v9acaWVVFdZT5yAU7J2QjwfhXyD.jpg');
   background-position: center;
   background-size: cover;
   opacity: 0.7;
@@ -277,6 +278,7 @@ header > .container {
 .movie-poster img {
   width: 100%;
   border-radius: 5px;
+  height: 450px;
 }
 
 .movie-content .top {
@@ -362,10 +364,6 @@ header > .container {
   background: #ffdb0d;
 }
 
-.suggestions-inner-wrap {
-  padding: 45px 80px;
-}
-
 .suggestions-content h4 {
   font-size: 30px;
   text-transform: uppercase;
@@ -410,13 +408,18 @@ header > .container {
   padding: 15px 34px;
 }
 
+.suggestions-form button:hover {
+  color: inherit;
+}
+
 /* Footer */
 .footer {
   background-color: #1e1e1e;
-  padding: 1.25rem;
+  padding: 3rem 1rem;
   text-align: center;
   color: #ccc;
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: 500;
   margin-top: auto;
 }
 
@@ -424,18 +427,12 @@ header > .container {
   color: #ffdb0d;
 }
 
+.footer p {
+  margin-bottom: 0;
+}
+
 .footer a:hover {
-  text-decoration: underline;
-}
-
-.footer .socials {
-  margin: 10px 0 0;
-  padding: 0;
-}
-
-.footer .socials li {
-  display: inline-block;
-  margin: 0 10px;
+  border-bottom: 2px solid #ffdb0d;
 }
 
 /* Scroll-up button */
@@ -496,7 +493,7 @@ header > .container {
 }
 
 .menu-backdrop.active {
-  opacity: 0.08;
+  opacity: 0.5;
   visibility: visible;
 }
 
@@ -564,6 +561,12 @@ header > .container {
 
   .suggestions-inner-wrap {
     padding: 45px 0px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .suggestions-inner-wrap {
+    padding: 45px 30px;
   }
 }
 
