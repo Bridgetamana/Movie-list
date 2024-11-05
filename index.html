@@ -48,7 +48,6 @@
             <li><a href="#movies">My Movies</a></li>
             <li><a href="#suggestions">Suggestions</a></li>
           </ul>
-          <div class="menu-backdrop"></div>
         </nav>
       </div>
     </header>
@@ -61,9 +60,6 @@
             <div>
               <div class="hero-content">
                 <h6 class="sub-title">My Movie Diary</h6>
-                <h2 class="title">
-                  A <span>Collection</span> of Movies I've Watched
-                </h2>
                 <p>
                   Welcome to my personal collection of movies I've enjoyed (or
                   at least the ones I remember). This is just a fun little list
@@ -72,17 +68,20 @@
               </div>
 
               <div class="search">
-                <input
-                  type="text"
-                  placeholder="Search for a movie..."
-                  id="movie-search-box"
-                />
-                <button class="searchbutton">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="searchbutton-icon">
+                <label class="search-label">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-icon">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                  </svg>                  
-                </button>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder=""
+                    id="movie-search-box"
+                    oninput="fetchMoviesFromWatchlist(currentPage)"
+                  />
+                  <span class="placeholder">Search for a movie</span>
+                </label>
               </div>
+              
             </div>
           </div>
         </div>
@@ -91,25 +90,6 @@
       <!-- Movies Section -->
       <section id="movies" class="watched-movie">
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="section-title text-center">
-                <span class="sub-title">MY MOVIE COLLECTION</span>
-                <h2 class="title">Movies I've Watched</h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="watched-movie-cat-active text-center">
-                <button class="active">All</button>
-                <button>Movies</button>
-                <button>TV Shows</button>
-                <button>Documentary</button>
-              </div>
-            </div>
-          </div>
           <div class="loader" style="display: none;">Loading...</div>
           <div class="row movies-list">
             <!-- This section will dynamically populate with movie content -->
@@ -137,14 +117,14 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <form action="#" class="suggestions-form" netlify >
+                <form action="./successPage.html" class="suggestions-form" data-netlify="true" >
                   <input
                     type="text"
                     name="suggestions"
                     required
                     placeholder="Your suggestion..."
                   />
-                  <button class="btn">get started</button>
+                  <button class="btn">Submit</button>
                 </form>
               </div>
             </div>

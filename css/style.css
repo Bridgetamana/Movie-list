@@ -38,6 +38,10 @@ li {
   list-style: none;
 }
 
+dl, ol, ul {
+  margin: 0;
+}
+
 button {
   border: 0;
   background: transparent;
@@ -70,7 +74,7 @@ header {
 
 header.active {
   background: #171d21;
-  padding-block: 1rem;
+  padding-block: 1.5rem;
 }
 
 header,
@@ -148,23 +152,9 @@ header > .container {
 /* Hero Section */
 .hero-bg {
   position: relative;
-  padding: 295px 0 273px;
+  padding: 140px 0 0;
   background-position: center;
   background-size: cover;
-}
-
-.hero-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('https://image.tmdb.org/t/p/w1280/v9acaWVVFdZT5yAU7J2QjwfhXyD.jpg');
-  background-position: center;
-  background-size: cover;
-  opacity: 0.7;
-  z-index: -1;
 }
 
 .hero-content {
@@ -188,46 +178,61 @@ header > .container {
 
 /* Search */
 .search {
-  margin-top: 1rem;
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
   width: 100%;
   max-width: 350px;
-  height: 50px;
+}
+
+.search-label {
+  position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.search-label:hover,
+.search-label:focus-within {
+  border-color: #ffdb0d;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  color: #666;
 }
 
 .search input {
-  width: 75%;
-  height: 50px;
   border: none;
-  padding-left: 20px;
-  background-color: white;
-  font-size: 14px;
-  color: black;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
   outline: none;
+  padding: 8px 0;
+  color: #666;
+  font-size: 16px;
+  flex-grow: 1;
+  background: none;
 }
 
-.searchbutton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 50px;
-  border: none;
-  background-color: #ffdb0d;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+.placeholder {
+  position: absolute;
+  left: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.2s ease all;
 }
 
-.searchbutton-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.section-title {
-  margin-bottom: 40px;
+.search input:focus + .placeholder,
+.search input:not(:placeholder-shown) + .placeholder {
+  top: -5px;
+  font-size: 12px;
+  background: #121212;
+  padding: 0 6px;
+  left: 10px;
 }
 
 .section-title .sub-title {
@@ -245,26 +250,6 @@ header > .container {
 
 .watched-movie {
   padding: 120px 0 60px;
-}
-
-.watched-movie-cat-active {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.watched-movie-cat-active button {
-  border: none;
-  border-radius: 4px;
-  background: #443f21;
-  font-size: 12px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #cdcaca;
-  padding: 12px 20px;
-  margin: 0 6px 14px;
 }
 
 .movie-item {
@@ -474,28 +459,6 @@ header > .container {
   flex: 1;
 }
 
-.menu-backdrop {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  transition: all 700ms ease;
-  -moz-transition: all 700ms ease;
-  -webkit-transition: all 700ms ease;
-  -ms-transition: all 700ms ease;
-  -o-transition: all 700ms ease;
-  opacity: 0;
-  visibility: hidden;
-  background: #171d22;
-}
-
-.menu-backdrop.active {
-  opacity: 0.5;
-  visibility: visible;
-}
-
 @media (min-width: 575px) {
   .movie-poster img {
     height: 450px;
@@ -559,11 +522,6 @@ header > .container {
 }
 
 @media (max-width: 1500px) {
-  .hero-bg {
-    padding: 240px 0 200px;
-    background-position: right center;
-  }
-
   .suggestions-inner-wrap {
     padding: 45px 0px;
   }
@@ -577,7 +535,7 @@ header > .container {
 
 @media (max-width: 950px) {
   .hero-bg {
-    padding: 170px 0 140px;
+    padding: 120px 14px 0;
   }
 
   .hero-content .title {

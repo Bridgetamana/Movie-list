@@ -55,12 +55,17 @@ async function fetchMoviesFromWatchlist(page) {
   moviesListElement.innerHTML = '';
   loaderElement.style.display = 'block';
 
+  const searchQuery = document.getElementById("movie-search-box").value.trim().toLowerCase();
+  const filteredWatchlist = watchlist.filter(movieTitle => movieTitle.toLowerCase().includes(searchQuery));
+
   const startIndex = (page - 1) * moviesPerPage;
   const endIndex = startIndex + moviesPerPage;
-  const moviesToDisplay = watchlist.slice(startIndex, endIndex);
+  const moviesToDisplay = filteredWatchlist.slice(startIndex, endIndex);
 
   try {
-    const moviesData = await Promise.all(moviesToDisplay.map(movieTitle => fetch(`${baseUrl}${movieTitle}`).then(res => res.json())));
+    const moviesData = await Promise.all(moviesToDisplay.map(movieTitle =>
+      fetch(`${baseUrl}${movieTitle}`).then(res => res.json())
+    ));
 
     moviesData.forEach((data, index) => {
       const movieItem = document.createElement('div');
@@ -96,13 +101,11 @@ async function fetchMoviesFromWatchlist(page) {
   }
 
   loaderElement.style.display = 'none';
-  updatePageInfo();
+  updatePageInfo(filteredWatchlist.length);
 }
 
 function updatePageInfo() {
   const totalPages = Math.ceil(watchlist.length / moviesPerPage);
-  pageInfoElement.textContent = `Page ${currentPage} of ${totalPages}`;
-
   prevButton.disabled = currentPage === 1;
   nextButton.disabled = currentPage === totalPages;
 }
